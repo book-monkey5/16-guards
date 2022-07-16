@@ -1,0 +1,14 @@
+// ...
+/*BS*/import { AuthGuard } from './shared/auth.guard';/*BE*/
+
+const routes: Routes = [
+  // ...
+  {
+    path: 'admin',
+    loadChildren: () => /* ... */,
+    /*BS*/canActivate: [AuthGuard]/*BE*/
+  }
+];
+
+@NgModule({ /* ... */ })
+export class AppRoutingModule { }

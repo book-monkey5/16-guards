@@ -1,0 +1,21 @@
+// ...
+/*BS*/import { Observable, map, take } from 'rxjs';/*BE*/
+
+@Injectable({ providedIn: 'root' })
+export class AuthGuard implements CanActivate {
+  // ...
+
+  canActivate(): /*BS*/Observable<boolean | UrlTree>/*BE*/ {
+    /*BS*/return this.authService.isAuthenticated$.pipe(
+      take(1),
+      map(isAuthenticated => {/*BE*/
+        if (isAuthenticated) {
+          return true;
+        } else {
+          window.alert('Not logged in!');
+          return this.router.parseUrl('/home');
+        }
+      /*BS*/})
+    );/*BE*/
+  }
+}
